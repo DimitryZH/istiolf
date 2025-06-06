@@ -25,7 +25,14 @@ This section shows how to use **Google Cloud’s managed Istio offering** — Cl
   - Expand/collapse Bookinfo microservices relationships
 - Captured screenshots of:
   - **List View** in Service Mesh tab
-  - **Topology View** with connected Pods
+ 
+![list_view_slo](https://github.com/user-attachments/assets/ba17eb78-1978-4db7-acb6-1113027b86bf)
+
+ - **Topology View** with connected Pods
+  
+![topology_view](https://github.com/user-attachments/assets/47268163-28af-4d00-a6fb-45280824d177)
+
+
 
 ## Part 2: Raw Istio (Open Source)
 
