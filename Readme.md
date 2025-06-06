@@ -1,8 +1,45 @@
-# Istio for Microservices Security and Monitoring
-
-## Overview
+# Istio and Cloud Service Mesh on Google Kubernetes Engine (GKE)
 
 Istio is an open-source service mesh that provides a uniform way to secure, connect, and monitor microservices. It helps manage the complexity of microservices deployments by providing behavioral insights and operational control over the service mesh.
+
+This project demonstrates two approaches to implementing a service mesh on GKE:
+
+1. **Cloud Service Mesh (ASM)** – A managed Istio-based solution provided by Google Cloud.
+2. **Open Source Istio** – A raw installation of the open-source Istio tool, with full manual control over configuration and observability.
+
+The project includes screenshots, manifests, and instructions for observability tools (Prometheus, Grafana, Jaeger, Kiali), distributed tracing, and more.
+
+## Part 1: Cloud Service Mesh (ASM)
+
+This section shows how to use **Google Cloud’s managed Istio offering** — Cloud Service Mesh (ASM) — to install a secure and observable service mesh on GKE.
+
+### What’s Covered
+
+- Creating a GKE cluster for ASM
+- Installing and configuring ASM with recommended settings
+- Deploying sample application
+- Enabling external access via **Istio Ingress Gateway**
+- Using the **Google Cloud Console** to:
+  - Explore service-to-service topology
+  - View metrics and logs via the **Service Mesh tab**
+  - Expand/collapse Bookinfo microservices relationships
+- Captured screenshots of:
+  - **List View** in Service Mesh tab
+  - **Topology View** with connected Pods
+
+## Part 2: Raw Istio (Open Source)
+
+This section documents the installation and configuration of open-source Istio from scratch, without Google’s managed ASM solution.
+
+### You will find:
+
+- IstioOperator deployment via script
+- Automatic sidecar injection configuration
+- Deploy the sample application
+- Prometheus and Grafana setup for metrics
+- Envoy dashboard access
+- Distributed tracing using Jaeger
+- Kiali console integration
 
 ## Prerequisites (initial setup)
 
@@ -377,23 +414,3 @@ screenshoot
 Through the Display options, additional information can be overlaid on the graph.
 
 screenshoot
-
-## Security
-
-### Mutual TLS
-
-Istio provides mutual TLS to secure service-to-service communication. This ensures that all communication between services is encrypted and authenticated.
-
-### Authorization Policies
-
-Istio allows you to define authorization policies to control who can access your services. These policies can be based on service identity, request properties, and more.
-
-### Secure Ingress and Egress
-
-Istio provides secure ingress and egress gateways to control traffic entering and leaving the service mesh. This helps in enforcing security policies at the edge of the mesh.
-
-### Security Best Practices
-
-- Regularly update Istio to the latest version.
-- Use strong authentication mechanisms.
-- Monitor and audit your service mesh for any security vulnerabilities.
