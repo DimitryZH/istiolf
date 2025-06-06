@@ -84,6 +84,8 @@ Kustomize Version: v5.5.0
 Server Version: v1.32.1-gke.1357001
 ```
 
+![gke_created](https://github.com/user-attachments/assets/bc328c84-acd7-42b0-a735-81a1591e8839)
+
 ## Install Istio
 
 ### Run the download script
@@ -112,22 +114,20 @@ no ready Istio pods in "istio-system"
 1.21.0
 ```
 
+![istio_installed](https://github.com/user-attachments/assets/2604e825-2145-4b18-88d7-b7a459f26411)
+
 ### Deploy the IstioOperator resource
 
 ```sh
 istioctl install -f demo-profile.yaml
 ```
 
+![IstioOperator_resource](https://github.com/user-attachments/assets/fce27f8a-745e-4508-9f75-ffe205e13c15)
+
 Alternatively, use the `--set` flag:
 
 ```sh
 istioctl install --set profile=demo
-```
-
-### Check the deployed resource
-
-```sh
-kubectl get po -n istio-system
 ```
 
 ### Enable automatic sidecar injection
@@ -142,19 +142,12 @@ To check that the namespace is labeled, run:
 kubectl get namespace -L istio-injection
 ```
 
-(image)
+![auto_sidecar_inject](https://github.com/user-attachments/assets/f828fdeb-ff5c-477d-9f54-f6dd4aed9287)
 
 ### Check Istio system pods
 
 ```sh
 kubectl get po -n istio-system
-```
-
-```
-NAME READY STATUS RESTARTS AGE
-istio-egressgateway-5d94fbb578-n9x5t 1/1 Running 0 17h
-istio-ingressgateway-6c557996fd-n87lq 1/1 Running 0 17h
-istiod-74777ffbbf-57jld 1/1 Running 0 17h
 ```
 
 ### Check Istio version
@@ -215,7 +208,7 @@ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 kubectl apply -f samples/sleep/sleep.yaml
 ```
 
-result - paste image here
+![deploy_apps](https://github.com/user-attachments/assets/b4d79b14-4d51-48e3-8d68-f106efb1a03f)
 
 ### Make a token HTTP request against the productpage service
 
@@ -232,7 +225,7 @@ SLEEP_POD=$(kubectl get pod -l app=sleep -ojsonpath='{.items[0].metadata.name}')
 kubectl exec $SLEEP_POD -it -- curl productpage:9080/productpage | head
 ```
 
-screenshoot
+![call_service](https://github.com/user-attachments/assets/8f12a61a-01ce-443f-afd5-9eab6da1ba16)
 
 ### Query the scrape endpoint
 
@@ -246,7 +239,11 @@ kubectl exec $PRODUCTPAGE_POD -c istio-proxy -- curl localhost:15090/stats/prome
 istioctl dashboard envoy deploy/productpage-v1.default
 ```
 
-image
+![envoy_dashboard](https://github.com/user-attachments/assets/c4d66797-4221-4d0e-8e54-6b8ce34cc0a4)
+
+Prometheus stats tab
+
+![stats_prometheus](https://github.com/user-attachments/assets/0bf2a7b7-66b4-4fd7-afe5-10b17ac89960)
 
 ### Prometheus Metrics
 
@@ -271,7 +268,7 @@ istioctl dashboard prometheus
 
 Enter the metric name `istio_requests_total` into the search field and press Execute.
 
-screenshoot
+![prometheus_dashboard](https://github.com/user-attachments/assets/daf2136b-ad41-4faf-82a0-d24670af52a5)
 
 ### Prometheus Queries
 
@@ -287,7 +284,7 @@ To locate the call from the sleep pod to the productpage service:
 istio_requests_total{source_app="sleep",destination_app="productpage"}
 ```
 
-screenshoot
+![istio_requests_total](https://github.com/user-attachments/assets/640d1cad-263c-46c2-91d8-4969e75415cb)
 
 To query the rate of incoming requests over the last 5 minutes:
 
@@ -295,7 +292,7 @@ To query the rate of incoming requests over the last 5 minutes:
 rate(istio_requests_total{destination_app="productpage"}[5m])
 ```
 
-screenshoot
+![istio_rate_of_incoming_requests](https://github.com/user-attachments/assets/02522f83-24e4-4f76-803d-20cbf24183bb)
 
 To query the productpage service every 1-2 seconds:
 
@@ -319,7 +316,7 @@ istioctl dashboard grafana
 
 Navigate to the Istio dashboards in Grafana.
 
-screenshoot
+![grafana_six_dashboards](https://github.com/user-attachments/assets/f2e41511-7f8e-430d-bc38-f1a94309e59e)
 
 ### Send traffic to the productpage service
 
@@ -339,19 +336,25 @@ while true; do kubectl exec $SLEEP_POD -it -- curl productpage:9080/productpage;
 
 Navigate to the Istio Mesh Dashboard.
 
-screenshoot
+![grafana_istio_mesh_dashboard](https://github.com/user-attachments/assets/a3f7c72f-948f-40d2-8f95-d4d57dd899a4)
 
 ### Istio Service Dashboard
 
 Visit the Istio Service Dashboard, select the service named `productpage.default.svc.cluster.local`, and expand the General panel.
 
-3 screenshoots
+![service_workloads](https://github.com/user-attachments/assets/70fa5531-6804-405a-af3b-8f96ffea60a9)
+
+![client_workloads](https://github.com/user-attachments/assets/13b2c031-f507-4952-9fae-07783177b20f)
+
+![general](https://github.com/user-attachments/assets/96ea83dc-07f5-4f81-902f-d068112d8eb2)
 
 ### Istio Workload Dashboard
 
 Navigate to the Workload Dashboard, select the `reviews-v3` workload, and inspect its vitals.
 
-two screenshoots
+![inbound_workloads](https://github.com/user-attachments/assets/ed2eca75-483a-4b10-bfc6-7ba067704372)
+
+![outbound_workloads](https://github.com/user-attachments/assets/c69a7192-364b-4ba4-b1a0-1b05e3100841)
 
 ## Distributed Tracing
 
@@ -409,8 +412,28 @@ istioctl dashboard kiali
 
 Select the Graph option from the sidebar and select the default namespace.
 
-screenshoot
+![kiali_service_rating](https://github.com/user-attachments/assets/f9db1d0d-0316-4dbc-a8a9-a94e5a52995a)
 
 Through the Display options, additional information can be overlaid on the graph.
 
 screenshoot
+
+## Security
+
+### Mutual TLS
+
+Istio provides mutual TLS to secure service-to-service communication. This ensures that all communication between services is encrypted and authenticated.
+
+### Authorization Policies
+
+Istio allows you to define authorization policies to control who can access your services. These policies can be based on service identity, request properties, and more.
+
+### Secure Ingress and Egress
+
+Istio provides secure ingress and egress gateways to control traffic entering and leaving the service mesh. This helps in enforcing security policies at the edge of the mesh.
+
+### Security Best Practices
+
+- Regularly update Istio to the latest version.
+- Use strong authentication mechanisms.
+- Monitor and audit your service mesh for any security vulnerabilities.
