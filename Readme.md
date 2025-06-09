@@ -11,28 +11,46 @@ The project includes screenshots, manifests, and instructions for observability 
 
 ## Part 1: Cloud Service Mesh (ASM)
 
-This section shows how to use **Google Cloud’s managed Istio offering** — Cloud Service Mesh (ASM) — to install a secure and observable service mesh on GKE.
+This section demonstrates how to provision and configure **Cloud Service Mesh (ASM)** — Google Cloud’s managed Istio distribution — on a **GKE Autopilot cluster**, and deploy a microservice-based application with full observability.
 
-### What’s Covered
+### Objectives
 
-- Creating a GKE cluster for ASM
-- Installing and configuring ASM with recommended settings
-- Deploying sample application
-- Enabling external access via **Istio Ingress Gateway**
-- Using the **Google Cloud Console** to:
-  - Explore service-to-service topology
-  - View metrics and logs via the **Service Mesh tab**
-  - Expand/collapse Bookinfo microservices relationships
-- Captured screenshots of:
-  - **List View** in Service Mesh tab
- 
+- Provision a GKE Autopilot cluster
+- Install and configure the **Cloud Service Mesh control plane**
+- Deploy the **Bookinfo** Istio-enabled demo application
+- Enable external traffic with an **Istio Ingress Gateway**
+- Observe the mesh topology, metrics, and logs in the **Google Cloud Console**
+
+### Installation Guides
+
+You can follow any of the official or lab-based installation methods below:
+
+#### Option 1: Google Cloud Official Tutorials
+
+- **Overview Tutorial**: [Provision Cloud Service Mesh on a GKE Autopilot cluster](https://cloud.google.com/kubernetes-engine/docs/tutorials/service-mesh#objectives)
+- **Full Control Plane Setup**: [Provision a managed Cloud Service Mesh control plane](https://cloud.google.com/service-mesh/docs/onboarding/provision-control-plane)
+
+#### Option 2: Guided Lab (Recommended for Hands-On Practice)
+
+- **Skills Boost Lab**: [Installing Cloud Service Mesh on GKE – GSP654](https://www.cloudskillsboost.google/)
+
+This lab walks through provisioning GKE, installing ASM, deploying the Bookinfo app, and using the Service Mesh tab to monitor and observe traffic.
+
+### Visual Observability
+
+Screenshots from the **Service Mesh tab** in the Google Cloud Console are included, showing:
+
+- **List View** of services and workloads
+
 ![list_view_slo](https://github.com/user-attachments/assets/ba17eb78-1978-4db7-acb6-1113027b86bf)
 
- - **Topology View** with connected Pods
-  
+- You can also define and monitor Service Level Objectives (SLOs) directly from this view to track service health and trigger alerts.
+
+- **Topology View** of the Bookinfo app with all pods interconnected
+
 ![topology_view](https://github.com/user-attachments/assets/47268163-28af-4d00-a6fb-45280824d177)
 
-
+- Interactive Topology View with expand/collapse capabilities to visually inspect service dependencies, real-time traffic flow, and health status between components in your application.
 
 ## Part 2: Raw Istio (Open Source)
 
